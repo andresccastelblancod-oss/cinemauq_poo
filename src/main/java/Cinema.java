@@ -35,7 +35,7 @@ public class Cinema {
         return ultimaVenta;
     }
 
-    // ---------- Peliculas ----------
+ 
     public boolean registrarPelicula(Pelicula pelicula) {
         boolean yaRegistrada = false;
         for (int i = 0; i < peliculas.size(); i++) {
@@ -65,7 +65,7 @@ public class Cinema {
         return peliculas;
     }
 
-    // ---------- Salas ----------
+   
     public boolean registrarSala(Sala sala) {
         boolean yaRegistrada = false;
         for (int i = 0; i < salas.size(); i++) {
@@ -94,7 +94,6 @@ public class Cinema {
         return salas;
     }
 
-    // ---------- Funciones ----------
     public boolean programarFuncion(String codigo, Pelicula pelicula, Sala sala, String fecha, String hora,
                                     double valorBase) {
         boolean yaRegistrada = false;
@@ -128,7 +127,7 @@ public class Cinema {
         return funciones;
     }
 
-    // ---------- Tarifas ----------
+   
     public Tarifa buscarTarifa(TipoCliente tipo) {
         for (int i = 0; i < tarifas.size(); i++) {
             if (tarifas.get(i).getTipo() == tipo) {
@@ -146,7 +145,7 @@ public class Cinema {
         return tarifas;
     }
 
-    // ---------- Ventas ----------
+   
     public boolean venderEntrada(String codigoFuncion, Cliente cliente, String codigoAsiento) {
         Funcion funcion = buscarFuncion(codigoFuncion);
         if (funcion == null || funcion.getEstado() != EstadoFuncion.PROGRAMADA) {
@@ -207,7 +206,7 @@ public class Cinema {
         return clientes;
     }
 
-    // ---------- Reportes ----------
+   
     public int totalEntradasVendidas() {
         int cont = 0;
         for (int i = 0; i < ventas.size(); i++) {
