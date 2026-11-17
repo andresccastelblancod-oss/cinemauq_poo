@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="10" style="-fx-background-color: linear-gradient(to bottom, #1d0a10, #14070b); -fx-font-family: 'Segoe UI'; -fx-font-size: 14px;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewController.DisponibilidadViewController">
+    <padding>
+        <Insets top="12" right="12" bottom="12" left="12"/>
+    </padding>
+    <children>
+        <Label text="Funcion:" style="-fx-text-fill: #f3e9dc;"/>
+        <ComboBox fx:id="cmbFuncion" prefWidth="520" style="-fx-background-color: #2a1219; -fx-border-color: #6b2a38; -fx-border-radius: 4; -fx-background-radius: 4;"/>
+        <Label fx:id="lblResumen" style="-fx-text-fill: #f5c542; -fx-font-weight: bold;"/>
+
+        <VBox spacing="6">
+            <Label text="P A N T A L L A" maxWidth="Infinity" alignment="CENTER" style="-fx-background-color: linear-gradient(to bottom, #fff8e1, #90a4ae); -fx-background-radius: 60 60 8 8; -fx-text-fill: #37474f; -fx-font-weight: bold; -fx-padding: 8; -fx-effect: dropshadow(gaussian, rgba(255, 248, 225, 0.6), 24, 0.25, 0, 6);"/>
+            <ScrollPane fitToWidth="true" prefHeight="300" style="-fx-background: #14070b; -fx-background-color: transparent; -fx-padding: 0;">
+                <content>
+                    <GridPane fx:id="mapaDisponibilidad" hgap="5" vgap="5" alignment="CENTER" style="-fx-background-color: #14070b;">
+                        <padding>
+                            <Insets top="10" right="10" bottom="10" left="10"/>
+                        </padding>
+                    </GridPane>
+                </content>
+            </ScrollPane>
+            <Label text="Verde = disponible    Rojo = ocupado    Dorado = tu seleccion" style="-fx-text-fill: #c9b8a5; -fx-font-style: italic;"/>
+        </VBox>
+    </children>
+</VBox>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="10" style="-fx-background-color: linear-gradient(to bottom, #1d0a10, #14070b); -fx-font-family: 'Segoe UI'; -fx-font-size: 14px;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewController.SalaViewController">
+    <padding>
+        <Insets top="12" right="12" bottom="12" left="12"/>
+    </padding>
+    <children>
+        <Label text="Salas:" style="-fx-text-fill: #f3e9dc;"/>
+        <ListView fx:id="listaSalas" prefHeight="220" style="-fx-control-inner-background: #1e0c11; -fx-control-inner-background-alt: #260f16; -fx-background-color: #1e0c11; -fx-border-color: #6b2a38; -fx-border-radius: 6; -fx-background-radius: 6;"/>
+
+        <GridPane hgap="10" vgap="8">
+            <Label text="Codigo:" style="-fx-text-fill: #f3e9dc;" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <TextField fx:id="txtCod" style="-fx-background-color: #2a1219; -fx-text-fill: #f3e9dc; -fx-border-color: #6b2a38; -fx-border-radius: 4; -fx-background-radius: 4;" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+            <Label text="Nombre:" style="-fx-text-fill: #f3e9dc;" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+            <TextField fx:id="txtNombre" style="-fx-background-color: #2a1219; -fx-text-fill: #f3e9dc; -fx-border-color: #6b2a38; -fx-border-radius: 4; -fx-background-radius: 4;" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+            <Label text="Filas:" style="-fx-text-fill: #f3e9dc;" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+            <TextField fx:id="txtFilas" style="-fx-background-color: #2a1219; -fx-text-fill: #f3e9dc; -fx-border-color: #6b2a38; -fx-border-radius: 4; -fx-background-radius: 4;" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+            <Label text="Columnas:" style="-fx-text-fill: #f3e9dc;" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+            <TextField fx:id="txtColumnas" style="-fx-background-color: #2a1219; -fx-text-fill: #f3e9dc; -fx-border-color: #6b2a38; -fx-border-radius: 4; -fx-background-radius: 4;" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+        </GridPane>
+
+        <HBox spacing="8">
+            <Button fx:id="btnRegistrarSala" text="Registrar" style="-fx-background-color: linear-gradient(to bottom, #ffd966, #d4a017); -fx-text-fill: #2b1118; -fx-border-color: #8a6500; -fx-border-radius: 6; -fx-background-radius: 6; -fx-font-weight: bold; -fx-padding: 7 16 7 16; -fx-cursor: hand;"/>
+            <Button fx:id="btnCambiarNombre" text="Cambiar nombre de la seleccionada" style="-fx-background-color: #3a1520; -fx-text-fill: #f3e9dc; -fx-border-color: #f5c542; -fx-border-radius: 6; -fx-background-radius: 6; -fx-font-weight: bold; -fx-padding: 7 16 7 16; -fx-cursor: hand;"/>
+            <Button fx:id="btnDeshabilitarSala" text="Deshabilitar seleccionada" style="-fx-background-color: #8b1a2b; -fx-text-fill: #ffe9e9; -fx-border-color: #ff6b6b; -fx-border-radius: 6; -fx-background-radius: 6; -fx-font-weight: bold; -fx-padding: 7 16 7 16; -fx-cursor: hand;"/>
+        </HBox>
+    </children>
+</VBox>

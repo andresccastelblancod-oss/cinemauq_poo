@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="10" style="-fx-background-color: linear-gradient(to bottom, #1d0a10, #14070b); -fx-font-family: 'Segoe UI'; -fx-font-size: 14px;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewController.CancelarVentaViewController">
+    <padding>
+        <Insets top="12" right="12" bottom="12" left="12"/>
+    </padding>
+    <children>
+        <Label text="Ventas registradas:" style="-fx-text-fill: #f3e9dc;"/>
+        <ListView fx:id="listaVentas" prefHeight="400" style="-fx-control-inner-background: #1e0c11; -fx-control-inner-background-alt: #260f16; -fx-background-color: #1e0c11; -fx-border-color: #6b2a38; -fx-border-radius: 6; -fx-background-radius: 6;"/>
+        <Button fx:id="btnCancelar" text="Cancelar venta seleccionada" style="-fx-background-color: #8b1a2b; -fx-text-fill: #ffe9e9; -fx-border-color: #ff6b6b; -fx-border-radius: 6; -fx-background-radius: 6; -fx-font-weight: bold; -fx-padding: 7 16 7 16; -fx-cursor: hand;"/>
+    </children>
+</VBox>
