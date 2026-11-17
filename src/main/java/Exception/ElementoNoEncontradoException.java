@@ -1,4 +1,4 @@
-package model;
+package Exception;
 
 public class ElementoNoEncontradoException extends CinemaException {
     public ElementoNoEncontradoException(String detalle) {

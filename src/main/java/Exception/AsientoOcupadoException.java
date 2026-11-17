@@ -1,4 +1,4 @@
-package model;
+package Exception;
 
 public class AsientoOcupadoException extends CinemaException {
     public AsientoOcupadoException(String detalle) {

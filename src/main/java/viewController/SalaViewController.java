@@ -1,48 +1,37 @@
 package viewController;
 
 import controller.SalaController;
-import javafx.scene.Node;
+import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import model.Sala;
 
 public class SalaViewController {
     private SalaController controller;
     private Runnable onActualizarGlobal;
-    private ListView<Sala> lista;
 
-    public SalaViewController(SalaController controller, Runnable onActualizarGlobal) {
+    @FXML private ListView<Sala> listaSalas;
+    @FXML private TextField txtCod;
+    @FXML private TextField txtNombre;
+    @FXML private TextField txtFilas;
+    @FXML private TextField txtColumnas;
+    @FXML private Button btnRegistrarSala;
+    @FXML private Button btnCambiarNombre;
+    @FXML private Button btnDeshabilitarSala;
+
+    public void init(SalaController controller, Runnable onActualizarGlobal) {
         this.controller = controller;
         this.onActualizarGlobal = onActualizarGlobal;
-    }
 
-    public Node construirVista() {
-        lista = new ListView<>();
-        TextField txtCod = new TextField();
-        TextField txtNombre = new TextField();
-        TextField txtFilas = new TextField();
-        TextField txtColumnas = new TextField();
-
-        GridPane form = UiHelper.crearFormulario();
-        UiHelper.agregar(form, 0, "Codigo:", txtCod);
-        UiHelper.agregar(form, 1, "Nombre:", txtNombre);
-        UiHelper.agregar(form, 2, "Filas:", txtFilas);
-        UiHelper.agregar(form, 3, "Columnas:", txtColumnas);
-
-        lista.getSelectionModel().selectedItemProperty().addListener((obs, anterior, s) -> {
+        listaSalas.getSelectionModel().selectedItemProperty().addListener((obs, anterior, s) -> {
             if (s != null) {
                 txtCod.setText(s.getCodigo());
                 txtNombre.setText(s.getNombre());
             }
         });
 
-        Button btnRegistrar = new Button("Registrar");
-        btnRegistrar.getStyleClass().add("boton-principal");
-        btnRegistrar.setOnAction(e -> {
+        btnRegistrarSala.setOnAction(e -> {
             if (txtCod.getText().trim().isEmpty() || txtNombre.getText().trim().isEmpty()) {
                 UiHelper.error("Complete codigo y nombre");
                 return;
@@ -63,9 +52,8 @@ public class SalaViewController {
             }
         });
 
-        Button btnNombre = new Button("Cambiar nombre de la seleccionada");
-        btnNombre.setOnAction(e -> {
-            Sala s = lista.getSelectionModel().getSelectedItem();
+        btnCambiarNombre.setOnAction(e -> {
+            Sala s = listaSalas.getSelectionModel().getSelectedItem();
             if (s == null) {
                 UiHelper.error("Seleccione una sala de la lista");
                 return;
@@ -78,10 +66,8 @@ public class SalaViewController {
             onActualizarGlobal.run();
         });
 
-        Button btnDeshabilitar = new Button("Deshabilitar seleccionada");
-        btnDeshabilitar.getStyleClass().add("boton-peligro");
-        btnDeshabilitar.setOnAction(e -> {
-            Sala s = lista.getSelectionModel().getSelectedItem();
+        btnDeshabilitarSala.setOnAction(e -> {
+            Sala s = listaSalas.getSelectionModel().getSelectedItem();
             if (s == null) {
                 UiHelper.error("Seleccione una sala de la lista");
                 return;
@@ -89,11 +75,9 @@ public class SalaViewController {
             s.deshabilitar();
             onActualizarGlobal.run();
         });
-
-        return UiHelper.contenedor(new Label("Salas:"), lista, form, new HBox(8, btnRegistrar, btnNombre, btnDeshabilitar));
     }
 
     public void refrescar() {
-        UiHelper.recargarLista(lista, controller.getSalas());
+        UiHelper.recargarLista(listaSalas, controller.getSalas());
     }
 }

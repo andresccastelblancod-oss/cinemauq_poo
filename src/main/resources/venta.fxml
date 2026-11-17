@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox fx:id="panelPrincipal" spacing="10" style="-fx-background-color: linear-gradient(to bottom, #1d0a10, #14070b); -fx-font-family: 'Segoe UI'; -fx-font-size: 14px;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewController.VentaViewController">
+    <padding>
+        <Insets top="12" right="12" bottom="12" left="12"/>
+    </padding>
+    <children>
+        <GridPane hgap="10" vgap="8">
+            <Label text="Funcion:" style="-fx-text-fill: #f3e9dc;" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <ComboBox fx:id="cmbFuncionVenta" prefWidth="520" style="-fx-background-color: #2a1219; -fx-border-color: #6b2a38; -fx-border-radius: 4; -fx-background-radius: 4;" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+            <Label text="Identificacion:" style="-fx-text-fill: #f3e9dc;" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+            <TextField fx:id="txtId" style="-fx-background-color: #2a1219; -fx-text-fill: #f3e9dc; -fx-border-color: #6b2a38; -fx-border-radius: 4; -fx-background-radius: 4;" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+            <Label text="Nombre:" style="-fx-text-fill: #f3e9dc;" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+            <TextField fx:id="txtNombre" style="-fx-background-color: #2a1219; -fx-text-fill: #f3e9dc; -fx-border-color: #6b2a38; -fx-border-radius: 4; -fx-background-radius: 4;" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+            <Label text="Tipo de cliente:" style="-fx-text-fill: #f3e9dc;" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+            <ComboBox fx:id="cmbTipo" style="-fx-background-color: #2a1219; -fx-border-color: #6b2a38; -fx-border-radius: 4; -fx-background-radius: 4;" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+        </GridPane>
+
+        <VBox spacing="6">
+            <Label fx:id="lblPantalla" text="P A N T A L L A" maxWidth="Infinity" alignment="CENTER" style="-fx-background-color: linear-gradient(to bottom, #fff8e1, #90a4ae); -fx-background-radius: 60 60 8 8; -fx-text-fill: #37474f; -fx-font-weight: bold; -fx-padding: 8; -fx-effect: dropshadow(gaussian, rgba(255, 248, 225, 0.6), 24, 0.25, 0, 6);"/>
+            <ScrollPane fx:id="scrollMapa" fitToWidth="true" prefHeight="300" style="-fx-background: #14070b; -fx-background-color: transparent; -fx-padding: 0;">
+                <content>
+                    <GridPane fx:id="mapaVenta" hgap="5" vgap="5" alignment="CENTER" style="-fx-background-color: #14070b;">
+                        <padding>
+                            <Insets top="10" right="10" bottom="10" left="10"/>
+                        </padding>
+                    </GridPane>
+                </content>
+            </ScrollPane>
+            <Label text="Verde = disponible    Rojo = ocupado    Dorado = tu seleccion" style="-fx-text-fill: #c9b8a5; -fx-font-style: italic;"/>
+        </VBox>
+
+        <Button fx:id="btnVender" text="Vender entrada" style="-fx-background-color: linear-gradient(to bottom, #ffd966, #d4a017); -fx-text-fill: #2b1118; -fx-border-color: #8a6500; -fx-border-radius: 6; -fx-background-radius: 6; -fx-font-weight: bold; -fx-padding: 7 16 7 16; -fx-cursor: hand;"/>
+        <Label text="Entrada generada:" style="-fx-text-fill: #f3e9dc;"/>
+        <TextArea fx:id="txtEntrada" editable="false" prefRowCount="8" style="-fx-control-inner-background: #fff3d6; -fx-text-fill: #3b1a0f; -fx-font-family: 'Consolas'; -fx-font-size: 13px;"/>
+    </children>
+</VBox>

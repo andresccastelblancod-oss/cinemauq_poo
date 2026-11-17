@@ -1,4 +1,4 @@
-package model;
+package Exception;
 
 public class SinAsientosException extends CinemaException {
     public SinAsientosException(String detalle) {

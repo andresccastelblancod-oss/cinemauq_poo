@@ -13,15 +13,27 @@ import model.Funcion;
 import java.util.List;
 
 public class UiHelper {
-    private static String hojaEstilo;
+    private static final String ESTILO_ASIENTO_LIBRE =
+            "-fx-background-color: linear-gradient(to bottom, #43a047, #1b5e20); " +
+                    "-fx-background-radius: 10 10 4 4; -fx-border-color: #a5d6a7; -fx-border-radius: 10 10 4 4; " +
+                    "-fx-text-fill: white; -fx-font-weight: bold; -fx-alignment: center; -fx-cursor: hand;";
 
-    public static void setHojaEstilo(String css) {
-        hojaEstilo = css;
-    }
+    private static final String ESTILO_ASIENTO_SELECCIONADO =
+            "-fx-background-color: linear-gradient(to bottom, #ffe082, #f5c542); " +
+                    "-fx-background-radius: 10 10 4 4; -fx-border-color: #fff8e1; -fx-border-radius: 10 10 4 4; " +
+                    "-fx-text-fill: #2b1118; -fx-font-weight: bold; -fx-alignment: center; -fx-cursor: hand; " +
+                    "-fx-effect: dropshadow(gaussian, #ffd54f, 12, 0.5, 0, 0);";
+
+    private static final String ESTILO_ASIENTO_OCUPADO =
+            "-fx-background-color: linear-gradient(to bottom, #c62828, #7f0000); " +
+                    "-fx-background-radius: 10 10 4 4; -fx-border-color: #ef9a9a; -fx-border-radius: 10 10 4 4; " +
+                    "-fx-text-fill: #ffcdd2; -fx-font-weight: bold; -fx-alignment: center; -fx-opacity: 1;";
 
     public static void aplicarEstilo(Alert a) {
-        if (hojaEstilo != null) {
-            a.getDialogPane().getStylesheets().add(hojaEstilo);
+        a.getDialogPane().setStyle("-fx-background-color: #2b1118; -fx-font-family: 'Segoe UI'; -fx-font-size: 14px;");
+        Node contenido = a.getDialogPane().lookup(".content.label");
+        if (contenido != null) {
+            contenido.setStyle("-fx-text-fill: #f3e9dc;");
         }
     }
 
@@ -71,25 +83,6 @@ public class UiHelper {
         }
     }
 
-    public static GridPane crearFormulario() {
-        GridPane g = new GridPane();
-        g.setHgap(10);
-        g.setVgap(8);
-        return g;
-    }
-
-    public static void agregar(GridPane g, int fila, String texto, Node control) {
-        g.add(new Label(texto), 0, fila);
-        g.add(control, 1, fila);
-    }
-
-    public static VBox contenedor(Node... nodos) {
-        VBox v = new VBox(10, nodos);
-        v.setPadding(new Insets(12));
-        v.getStyleClass().add("panel");
-        return v;
-    }
-
     public static ToggleGroup dibujarMapa(GridPane grid, Funcion f, boolean seleccionable) {
         grid.getChildren().clear();
         ToggleGroup grupoAsientos = seleccionable ? new ToggleGroup() : null;
@@ -106,10 +99,12 @@ public class UiHelper {
                 b.setUserData(a.getCodigo());
                 if (a.estaDisponible()) {
                     b.setToggleGroup(grupoAsientos);
-                    b.getStyleClass().add("asiento-libre");
+                    b.setStyle(ESTILO_ASIENTO_LIBRE);
+                    b.selectedProperty().addListener((obs, ant, sel) ->
+                            b.setStyle(sel ? ESTILO_ASIENTO_SELECCIONADO : ESTILO_ASIENTO_LIBRE));
                 } else {
                     b.setDisable(true);
-                    b.getStyleClass().add("asiento-ocupado");
+                    b.setStyle(ESTILO_ASIENTO_OCUPADO);
                 }
                 grid.add(b, columna, fila);
             } else {
@@ -117,32 +112,10 @@ public class UiHelper {
                 l.setPrefWidth(56);
                 l.setAlignment(Pos.CENTER);
                 l.setPadding(new Insets(6));
-                l.getStyleClass().add(a.estaDisponible() ? "asiento-libre" : "asiento-ocupado");
+                l.setStyle(a.estaDisponible() ? ESTILO_ASIENTO_LIBRE : ESTILO_ASIENTO_OCUPADO);
                 grid.add(l, columna, fila);
             }
         }
         return grupoAsientos;
-    }
-
-    public static GridPane nuevoMapa() {
-        GridPane mapa = new GridPane();
-        mapa.setHgap(5);
-        mapa.setVgap(5);
-        mapa.setAlignment(Pos.CENTER);
-        mapa.setPadding(new Insets(10));
-        return mapa;
-    }
-
-    public static Node envolverMapa(GridPane mapa) {
-        Label pantalla = new Label("P A N T A L L A");
-        pantalla.setMaxWidth(Double.MAX_VALUE);
-        pantalla.setAlignment(Pos.CENTER);
-        pantalla.getStyleClass().add("pantalla");
-        ScrollPane scroll = new ScrollPane(mapa);
-        scroll.setFitToWidth(true);
-        scroll.setPrefHeight(300);
-        Label leyenda = new Label("Verde = disponible    Rojo = ocupado    Dorado = tu seleccion");
-        leyenda.getStyleClass().add("leyenda");
-        return new VBox(6, pantalla, scroll, leyenda);
     }
 }

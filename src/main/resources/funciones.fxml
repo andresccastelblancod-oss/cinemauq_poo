@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="10" style="-fx-background-color: linear-gradient(to bottom, #1d0a10, #14070b); -fx-font-family: 'Segoe UI'; -fx-font-size: 14px;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewController.FuncionViewController">
+    <padding>
+        <Insets top="12" right="12" bottom="12" left="12"/>
+    </padding>
+    <children>
+        <Label text="Funciones:" style="-fx-text-fill: #f3e9dc;"/>
+        <ListView fx:id="listaFunciones" prefHeight="220" style="-fx-control-inner-background: #1e0c11; -fx-control-inner-background-alt: #260f16; -fx-background-color: #1e0c11; -fx-border-color: #6b2a38; -fx-border-radius: 6; -fx-background-radius: 6;"/>
+
+        <GridPane hgap="10" vgap="8">
+            <Label text="Codigo:" style="-fx-text-fill: #f3e9dc;" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <TextField fx:id="txtCod" style="-fx-background-color: #2a1219; -fx-text-fill: #f3e9dc; -fx-border-color: #6b2a38; -fx-border-radius: 4; -fx-background-radius: 4;" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+            <Label text="Pelicula:" style="-fx-text-fill: #f3e9dc;" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+            <ComboBox fx:id="cmbPelicula" style="-fx-background-color: #2a1219; -fx-border-color: #6b2a38; -fx-border-radius: 4; -fx-background-radius: 4;" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+            <Label text="Sala:" style="-fx-text-fill: #f3e9dc;" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+            <ComboBox fx:id="cmbSala" style="-fx-background-color: #2a1219; -fx-border-color: #6b2a38; -fx-border-radius: 4; -fx-background-radius: 4;" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+            <Label text="Fecha:" style="-fx-text-fill: #f3e9dc;" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+            <DatePicker fx:id="dpFecha" style="-fx-control-inner-background: #2a1219;" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+
+            <Label text="Hora:" style="-fx-text-fill: #f3e9dc;" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+            <TextField fx:id="txtHora" promptText="HH:MM" style="-fx-background-color: #2a1219; -fx-text-fill: #f3e9dc; -fx-prompt-text-fill: #8f7a6c; -fx-border-color: #6b2a38; -fx-border-radius: 4; -fx-background-radius: 4;" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+
+            <Label text="Valor base:" style="-fx-text-fill: #f3e9dc;" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+            <TextField fx:id="txtValor" style="-fx-background-color: #2a1219; -fx-text-fill: #f3e9dc; -fx-border-color: #6b2a38; -fx-border-radius: 4; -fx-background-radius: 4;" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+        </GridPane>
+
+        <HBox spacing="8">
+            <Button fx:id="btnProgramar" text="Programar funcion" style="-fx-background-color: linear-gradient(to bottom, #ffd966, #d4a017); -fx-text-fill: #2b1118; -fx-border-color: #8a6500; -fx-border-radius: 6; -fx-background-radius: 6; -fx-font-weight: bold; -fx-padding: 7 16 7 16; -fx-cursor: hand;"/>
+            <Button fx:id="btnCancelarFuncion" text="Cancelar funcion seleccionada" style="-fx-background-color: #8b1a2b; -fx-text-fill: #ffe9e9; -fx-border-color: #ff6b6b; -fx-border-radius: 6; -fx-background-radius: 6; -fx-font-weight: bold; -fx-padding: 7 16 7 16; -fx-cursor: hand;"/>
+        </HBox>
+    </children>
+</VBox>

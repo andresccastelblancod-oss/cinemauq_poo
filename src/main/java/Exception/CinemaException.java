@@ -1,4 +1,4 @@
-package model;
+package Exception;
 
 public class CinemaException extends Exception {
     public CinemaException(String mensaje) {

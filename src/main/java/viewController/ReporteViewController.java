@@ -2,7 +2,7 @@ package viewController;
 
 import controller.ReporteController;
 import javafx.collections.FXCollections;
-import javafx.scene.Node;
+import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -12,29 +12,17 @@ import model.Pelicula;
 
 public class ReporteViewController {
     private ReporteController controller;
-    private Label lblEntradas;
-    private Label lblIngresos;
-    private Label lblMasVendida;
-    private ComboBox<Funcion> cmbFuncion;
-    private DatePicker dpFecha;
 
-    public ReporteViewController(ReporteController controller) {
+    @FXML private Label lblEntradas;
+    @FXML private Label lblIngresos;
+    @FXML private Label lblMasVendida;
+    @FXML private ComboBox<Funcion> cmbFuncion;
+    @FXML private Label lblOcupacion;
+    @FXML private DatePicker dpFecha;
+    @FXML private ListView<Funcion> listaFecha;
+
+    public void init(ReporteController controller) {
         this.controller = controller;
-    }
-
-    public Node construirVista() {
-        lblEntradas = new Label();
-        lblIngresos = new Label();
-        lblMasVendida = new Label();
-        lblEntradas.getStyleClass().add("dato");
-        lblIngresos.getStyleClass().add("dato");
-        lblMasVendida.getStyleClass().add("dato");
-        cmbFuncion = new ComboBox<>();
-        cmbFuncion.setPrefWidth(520);
-        Label lblOcupacion = new Label("");
-        lblOcupacion.getStyleClass().add("resumen");
-        dpFecha = new DatePicker();
-        ListView<Funcion> listaFecha = new ListView<>();
 
         cmbFuncion.setOnAction(e -> {
             Funcion f = cmbFuncion.getValue();
@@ -53,10 +41,6 @@ public class ReporteViewController {
                         controller.funcionesPorFecha(dpFecha.getValue().toString())));
             }
         });
-
-        return UiHelper.contenedor(lblEntradas, lblIngresos, lblMasVendida,
-                new Label("Ocupacion de una funcion:"), cmbFuncion, lblOcupacion,
-                new Label("Funciones programadas en una fecha:"), dpFecha, listaFecha);
     }
 
     public void refrescar() {

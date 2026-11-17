@@ -1,4 +1,4 @@
-package model;
+package Exception;
 
 public class FuncionNoEncontradaException extends CinemaException {
     public FuncionNoEncontradaException(String detalle) {

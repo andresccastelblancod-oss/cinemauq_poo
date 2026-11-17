@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="10" style="-fx-background-color: linear-gradient(to bottom, #1d0a10, #14070b); -fx-font-family: 'Segoe UI'; -fx-font-size: 14px;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewController.ReporteViewController">
+    <padding>
+        <Insets top="12" right="12" bottom="12" left="12"/>
+    </padding>
+    <children>
+        <Label fx:id="lblEntradas" style="-fx-text-fill: #f5c542; -fx-font-size: 20px; -fx-font-weight: bold; -fx-padding: 4 0 4 0;"/>
+        <Label fx:id="lblIngresos" style="-fx-text-fill: #f5c542; -fx-font-size: 20px; -fx-font-weight: bold; -fx-padding: 4 0 4 0;"/>
+        <Label fx:id="lblMasVendida" style="-fx-text-fill: #f5c542; -fx-font-size: 20px; -fx-font-weight: bold; -fx-padding: 4 0 4 0;"/>
+
+        <Label text="Ocupacion de una funcion:" style="-fx-text-fill: #f3e9dc;"/>
+        <ComboBox fx:id="cmbFuncion" prefWidth="520" style="-fx-background-color: #2a1219; -fx-border-color: #6b2a38; -fx-border-radius: 4; -fx-background-radius: 4;"/>
+        <Label fx:id="lblOcupacion" style="-fx-text-fill: #f5c542; -fx-font-weight: bold;"/>
+
+        <Label text="Funciones programadas en una fecha:" style="-fx-text-fill: #f3e9dc;"/>
+        <DatePicker fx:id="dpFecha" style="-fx-control-inner-background: #2a1219;"/>
+        <ListView fx:id="listaFecha" prefHeight="200" style="-fx-control-inner-background: #1e0c11; -fx-control-inner-background-alt: #260f16; -fx-background-color: #1e0c11; -fx-border-color: #6b2a38; -fx-border-radius: 6; -fx-background-radius: 6;"/>
+    </children>
+</VBox>

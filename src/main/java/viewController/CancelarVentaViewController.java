@@ -1,29 +1,24 @@
 package viewController;
 
 import controller.CancelarVentaController;
-import javafx.scene.Node;
+import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import model.Venta;
 
 public class CancelarVentaViewController {
     private CancelarVentaController controller;
     private Runnable onActualizarGlobal;
-    private ListView<Venta> lista;
 
-    public CancelarVentaViewController(CancelarVentaController controller, Runnable onActualizarGlobal) {
+    @FXML private ListView<Venta> listaVentas;
+    @FXML private Button btnCancelar;
+
+    public void init(CancelarVentaController controller, Runnable onActualizarGlobal) {
         this.controller = controller;
         this.onActualizarGlobal = onActualizarGlobal;
-    }
-
-    public Node construirVista() {
-        lista = new ListView<>();
-        Button btnCancelar = new Button("Cancelar venta seleccionada");
-        btnCancelar.getStyleClass().add("boton-peligro");
 
         btnCancelar.setOnAction(e -> {
-            Venta v = lista.getSelectionModel().getSelectedItem();
+            Venta v = listaVentas.getSelectionModel().getSelectedItem();
             if (v == null) {
                 UiHelper.error("Seleccione una venta de la lista");
                 return;
@@ -35,11 +30,9 @@ public class CancelarVentaViewController {
                 UiHelper.error(controller.getMensajeError());
             }
         });
-
-        return UiHelper.contenedor(new Label("Ventas registradas:"), lista, btnCancelar);
     }
 
     public void refrescar() {
-        UiHelper.recargarLista(lista, controller.getVentas());
+        UiHelper.recargarLista(listaVentas, controller.getVentas());
     }
 }

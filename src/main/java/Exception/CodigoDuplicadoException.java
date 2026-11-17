@@ -1,4 +1,4 @@
-package model;
+package Exception;
 
 public class CodigoDuplicadoException extends CinemaException {
     public CodigoDuplicadoException(String detalle) {

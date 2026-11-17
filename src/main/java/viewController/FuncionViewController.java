@@ -1,10 +1,8 @@
 package viewController;
 
 import controller.FuncionController;
-import javafx.scene.Node;
+import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import model.Funcion;
 import model.Pelicula;
 import model.Sala;
@@ -12,35 +10,21 @@ import model.Sala;
 public class FuncionViewController {
     private FuncionController controller;
     private Runnable onActualizarGlobal;
-    private ListView<Funcion> lista;
-    private ComboBox<Pelicula> cmbPelicula;
-    private ComboBox<Sala> cmbSala;
 
-    public FuncionViewController(FuncionController controller, Runnable onActualizarGlobal) {
+    @FXML private ListView<Funcion> listaFunciones;
+    @FXML private TextField txtCod;
+    @FXML private ComboBox<Pelicula> cmbPelicula;
+    @FXML private ComboBox<Sala> cmbSala;
+    @FXML private DatePicker dpFecha;
+    @FXML private TextField txtHora;
+    @FXML private TextField txtValor;
+    @FXML private Button btnProgramar;
+    @FXML private Button btnCancelarFuncion;
+
+    public void init(FuncionController controller, Runnable onActualizarGlobal) {
         this.controller = controller;
         this.onActualizarGlobal = onActualizarGlobal;
-    }
 
-    public Node construirVista() {
-        lista = new ListView<>();
-        TextField txtCod = new TextField();
-        cmbPelicula = new ComboBox<>();
-        cmbSala = new ComboBox<>();
-        DatePicker dpFecha = new DatePicker();
-        TextField txtHora = new TextField();
-        txtHora.setPromptText("HH:MM");
-        TextField txtValor = new TextField();
-
-        GridPane form = UiHelper.crearFormulario();
-        UiHelper.agregar(form, 0, "Codigo:", txtCod);
-        UiHelper.agregar(form, 1, "Pelicula:", cmbPelicula);
-        UiHelper.agregar(form, 2, "Sala:", cmbSala);
-        UiHelper.agregar(form, 3, "Fecha:", dpFecha);
-        UiHelper.agregar(form, 4, "Hora:", txtHora);
-        UiHelper.agregar(form, 5, "Valor base:", txtValor);
-
-        Button btnProgramar = new Button("Programar funcion");
-        btnProgramar.getStyleClass().add("boton-principal");
         btnProgramar.setOnAction(e -> {
             Pelicula p = cmbPelicula.getValue();
             Sala s = cmbSala.getValue();
@@ -71,10 +55,8 @@ public class FuncionViewController {
             }
         });
 
-        Button btnCancelar = new Button("Cancelar funcion seleccionada");
-        btnCancelar.getStyleClass().add("boton-peligro");
-        btnCancelar.setOnAction(e -> {
-            Funcion f = lista.getSelectionModel().getSelectedItem();
+        btnCancelarFuncion.setOnAction(e -> {
+            Funcion f = listaFunciones.getSelectionModel().getSelectedItem();
             if (f == null) {
                 UiHelper.error("Seleccione una funcion de la lista");
                 return;
@@ -82,12 +64,10 @@ public class FuncionViewController {
             f.cancelar();
             onActualizarGlobal.run();
         });
-
-        return UiHelper.contenedor(new Label("Funciones:"), lista, form, new HBox(8, btnProgramar, btnCancelar));
     }
 
     public void refrescar() {
-        UiHelper.recargarLista(lista, controller.getFunciones());
+        UiHelper.recargarLista(listaFunciones, controller.getFunciones());
         UiHelper.recargarCombo(cmbPelicula, controller.getPeliculas());
         UiHelper.recargarCombo(cmbSala, controller.getSalas());
     }

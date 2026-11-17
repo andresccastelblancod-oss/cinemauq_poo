@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="10" style="-fx-background-color: linear-gradient(to bottom, #1d0a10, #14070b); -fx-font-family: 'Segoe UI'; -fx-font-size: 14px;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewController.TarifaViewController">
+    <padding>
+        <Insets top="12" right="12" bottom="12" left="12"/>
+    </padding>
+    <children>
+        <Label text="Tarifas actuales:" style="-fx-text-fill: #f3e9dc;"/>
+        <ListView fx:id="listaTarifas" prefHeight="250" style="-fx-control-inner-background: #1e0c11; -fx-control-inner-background-alt: #260f16; -fx-background-color: #1e0c11; -fx-border-color: #6b2a38; -fx-border-radius: 6; -fx-background-radius: 6;"/>
+
+        <GridPane hgap="10" vgap="8">
+            <Label text="Tipo de cliente:" style="-fx-text-fill: #f3e9dc;" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <ComboBox fx:id="cmbTipo" style="-fx-background-color: #2a1219; -fx-border-color: #6b2a38; -fx-border-radius: 4; -fx-background-radius: 4;" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+            <Label text="Nuevo descuento (%):" style="-fx-text-fill: #f3e9dc;" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+            <TextField fx:id="txtDescuento" promptText="0 a 100" style="-fx-background-color: #2a1219; -fx-text-fill: #f3e9dc; -fx-prompt-text-fill: #8f7a6c; -fx-border-color: #6b2a38; -fx-border-radius: 4; -fx-background-radius: 4;" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+        </GridPane>
+
+        <Button fx:id="btnAplicarDescuento" text="Aplicar descuento" style="-fx-background-color: linear-gradient(to bottom, #ffd966, #d4a017); -fx-text-fill: #2b1118; -fx-border-color: #8a6500; -fx-border-radius: 6; -fx-background-radius: 6; -fx-font-weight: bold; -fx-padding: 7 16 7 16; -fx-cursor: hand;"/>
+    </children>
+</VBox>

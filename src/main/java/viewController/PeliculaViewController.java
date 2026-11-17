@@ -2,41 +2,35 @@ package viewController;
 
 import controller.PeliculaController;
 import javafx.collections.FXCollections;
-import javafx.scene.Node;
+import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import model.Clasificacion;
 import model.Pelicula;
 
 public class PeliculaViewController {
     private PeliculaController controller;
     private Runnable onActualizarGlobal;
-    private ListView<Pelicula> lista;
 
-    public PeliculaViewController(PeliculaController controller, Runnable onActualizarGlobal) {
+    @FXML private ListView<Pelicula> listaPeliculas;
+    @FXML private TextField txtCod;
+    @FXML private TextField txtNombre;
+    @FXML private TextField txtGenero;
+    @FXML private TextField txtDuracion;
+    @FXML private ComboBox<Clasificacion> cmbClasificacion;
+    @FXML private Button btnRegistrar;
+    @FXML private Button btnModificar;
+    @FXML private Button btnDeshabilitar;
+    @FXML private Button btnLimpiar;
+
+    public void init(PeliculaController controller, Runnable onActualizarGlobal) {
         this.controller = controller;
         this.onActualizarGlobal = onActualizarGlobal;
-    }
 
-    public Node construirVista() {
-        lista = new ListView<>();
-        TextField txtCod = new TextField();
-        TextField txtNombre = new TextField();
-        TextField txtGenero = new TextField();
-        TextField txtDuracion = new TextField();
-        ComboBox<Clasificacion> cmbClasificacion =
-                new ComboBox<>(FXCollections.observableArrayList(Clasificacion.values()));
+        cmbClasificacion.setItems(FXCollections.observableArrayList(Clasificacion.values()));
         cmbClasificacion.setValue(Clasificacion.TODOS);
 
-        GridPane form = UiHelper.crearFormulario();
-        UiHelper.agregar(form, 0, "Codigo:", txtCod);
-        UiHelper.agregar(form, 1, "Nombre:", txtNombre);
-        UiHelper.agregar(form, 2, "Genero:", txtGenero);
-        UiHelper.agregar(form, 3, "Duracion (min):", txtDuracion);
-        UiHelper.agregar(form, 4, "Clasificacion:", cmbClasificacion);
-
-        lista.getSelectionModel().selectedItemProperty().addListener((obs, anterior, p) -> {
+        listaPeliculas.getSelectionModel().selectedItemProperty().addListener((obs, anterior, p) -> {
             if (p != null) {
                 txtCod.setText(p.getCodigo());
                 txtNombre.setText(p.getNombre());
@@ -46,8 +40,6 @@ public class PeliculaViewController {
             }
         });
 
-        Button btnRegistrar = new Button("Registrar");
-        btnRegistrar.getStyleClass().add("boton-principal");
         btnRegistrar.setOnAction(e -> {
             if (txtCod.getText().trim().isEmpty() || txtNombre.getText().trim().isEmpty()
                     || txtGenero.getText().trim().isEmpty()) {
@@ -70,9 +62,8 @@ public class PeliculaViewController {
             }
         });
 
-        Button btnModificar = new Button("Modificar seleccionada");
         btnModificar.setOnAction(e -> {
-            Pelicula p = lista.getSelectionModel().getSelectedItem();
+            Pelicula p = listaPeliculas.getSelectionModel().getSelectedItem();
             if (p == null) {
                 UiHelper.error("Seleccione una pelicula de la lista");
                 return;
@@ -90,10 +81,8 @@ public class PeliculaViewController {
             onActualizarGlobal.run();
         });
 
-        Button btnDeshabilitar = new Button("Deshabilitar seleccionada");
-        btnDeshabilitar.getStyleClass().add("boton-peligro");
         btnDeshabilitar.setOnAction(e -> {
-            Pelicula p = lista.getSelectionModel().getSelectedItem();
+            Pelicula p = listaPeliculas.getSelectionModel().getSelectedItem();
             if (p == null) {
                 UiHelper.error("Seleccione una pelicula de la lista");
                 return;
@@ -102,21 +91,17 @@ public class PeliculaViewController {
             onActualizarGlobal.run();
         });
 
-        Button btnLimpiar = new Button("Limpiar formulario");
         btnLimpiar.setOnAction(e -> {
-            lista.getSelectionModel().clearSelection();
+            listaPeliculas.getSelectionModel().clearSelection();
             txtCod.clear();
             txtNombre.clear();
             txtGenero.clear();
             txtDuracion.clear();
             cmbClasificacion.setValue(Clasificacion.TODOS);
         });
-
-        return UiHelper.contenedor(new Label("Peliculas:"), lista, form,
-                new HBox(8, btnRegistrar, btnModificar, btnDeshabilitar, btnLimpiar));
     }
 
     public void refrescar() {
-        UiHelper.recargarLista(lista, controller.getPeliculas());
+        UiHelper.recargarLista(listaPeliculas, controller.getPeliculas());
     }
 }

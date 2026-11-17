@@ -1,4 +1,4 @@
-package model;
+package Exception;
 
 public class VentaNoEncontradaException extends CinemaException {
     public VentaNoEncontradaException(String detalle) {
